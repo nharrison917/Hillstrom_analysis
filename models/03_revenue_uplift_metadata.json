@@ -1,0 +1,29 @@
+{
+  "stage": 3,
+  "model": "CausalForestDML (econml)",
+  "target": "spend",
+  "features": [
+    "recency",
+    "log_history",
+    "mens",
+    "womens",
+    "both_catalogs",
+    "newbie",
+    "history_segment_enc",
+    "zip_code_enc",
+    "channel_enc"
+  ],
+  "nuisance_model_y": "GradientBoostingRegressor (n=100, depth=3)",
+  "nuisance_model_t": "GradientBoostingClassifier (n=100, depth=3)",
+  "n_estimators": 500,
+  "min_samples_leaf": 10,
+  "cv_folds": 5,
+  "random_state": 42,
+  "ate_any": 0.6477,
+  "ate_any_se": 0.1205,
+  "ate_mens": 0.7382,
+  "ate_mens_se": 0.152,
+  "ate_womens": 0.4684,
+  "ate_womens_se": 0.137,
+  "notes": "CausalForestDML uses cross-fitting (cv=5) to partial out nuisance functions before estimating heterogeneous treatment effects. Outcome is raw spend (zero-inflated); forest handles this implicitly. ATE = average across all customers. CATE = individual estimates. CI computed at 90% level. Stage 4 will combine Stage 2 conversion uplift with Stage 3 CATE to produce expected incremental revenue per customer."
+}

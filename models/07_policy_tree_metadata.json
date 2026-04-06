@@ -1,0 +1,22 @@
+{
+  "stage": 7,
+  "model": "PolicyTree (econml)",
+  "max_depth": 3,
+  "min_samples_leaf": 500,
+  "cate_input": "Stage 3 CausalForestDML CATE estimates",
+  "trees": [
+    "any_email",
+    "mens_email",
+    "womens_email"
+  ],
+  "policy_counts": {
+    "Mens E-Mail": 37149,
+    "Womens E-Mail": 24724,
+    "Do Not Email": 2127
+  },
+  "ev_blanket_send": 0.6402,
+  "ev_policy_tree": 0.6402,
+  "pct_sent_tree": 100.0,
+  "agreement_with_stage4_ev": 0.3922,
+  "notes": "PolicyTree learns decision rules that maximise expected CATE across the feature space. min_samples_leaf=500 enforces actionable leaf sizes. Combined policy: if both Mens and Womens trees say send, pick the email type with higher CATE for that customer. Rules saved as plain text in outputs/07_policy_rules.txt \u2014 deployable without a scoring pipeline."
+}

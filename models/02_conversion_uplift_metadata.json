@@ -1,0 +1,33 @@
+{
+  "stage": 2,
+  "model": "T-Learner (XGBClassifier x2 per comparison)",
+  "target": "conversion",
+  "features": [
+    "recency",
+    "log_history",
+    "mens",
+    "womens",
+    "both_catalogs",
+    "newbie",
+    "history_segment_enc",
+    "zip_code_enc",
+    "channel_enc"
+  ],
+  "comparisons": [
+    "any_email_vs_control",
+    "mens_email_vs_control",
+    "womens_email_vs_control"
+  ],
+  "hyperparameters": {
+    "n_estimators": 300,
+    "max_depth": 4,
+    "learning_rate": 0.05,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8
+  },
+  "random_state": 42,
+  "qini_any": 0.00755,
+  "qini_mens": 0.009632,
+  "qini_womens": 0.007222,
+  "notes": "T-Learner trains separate models on treated and control subsets. Uplift = P(convert|treated) - P(convert|control) applied to all customers. Qini coefficient is the standard uplift evaluation metric (higher=better, 0=random). Low Qini expected given 0.9% base conversion rate \u2014 sparse signal. Stage 3 causal forest on spend should produce more stable estimates."
+}

@@ -1,0 +1,72 @@
+{
+  "stage": "7b",
+  "model": "PolicyTree (econml) - tuned via 5-fold CV",
+  "sweep": {
+    "depths": [
+      2,
+      3,
+      4
+    ],
+    "min_samples_leaf": [
+      200,
+      500,
+      1000
+    ],
+    "min_impurity_decrease": [
+      0.0,
+      0.01,
+      0.05
+    ],
+    "n_folds": 5,
+    "n_combinations": 27
+  },
+  "best_params": {
+    "any_email": {
+      "depth": 4,
+      "min_samples_leaf": 500,
+      "min_impurity_decrease": 0.0,
+      "cv_policy_value": 0.6796,
+      "cv_pct_sent": 0.9587
+    },
+    "mens_email": {
+      "depth": 4,
+      "min_samples_leaf": 1000,
+      "min_impurity_decrease": 0.0,
+      "cv_policy_value": 0.7295,
+      "cv_pct_sent": 0.9645
+    },
+    "womens_email": {
+      "depth": 4,
+      "min_samples_leaf": 500,
+      "min_impurity_decrease": 0.0,
+      "cv_policy_value": 0.6191,
+      "cv_pct_sent": 0.9118
+    }
+  },
+  "suppression_gap": {
+    "cate_c0_cluster_size": 17233,
+    "stage7_dne": 2127,
+    "stage7b_dne": 2127,
+    "c0_suppressed_by_tree": 1529,
+    "c0_still_sent": 15704,
+    "leakage_mens_suppress_sent_womens": 1906,
+    "leakage_both_negative_cate": 292
+  },
+  "policy_value": {
+    "blanket_send": 0.6402,
+    "policy_tree": 0.6402,
+    "pct_sent": 100.0,
+    "agreement_with_stage4_ev": 0.3906
+  },
+  "recommendations_rule_only": {
+    "Mens E-Mail": 35991,
+    "Womens E-Mail": 25882,
+    "Do Not Email": 2127
+  },
+  "recommendations_c0_filtered": {
+    "Mens E-Mail": 27136,
+    "Womens E-Mail": 19033,
+    "Do Not Email": 17831
+  },
+  "notes": "Tuned via 5-fold stratified CV (stratified on treatment group). Best params selected by mean CV policy value with tie-breaking in favour of shallower depth (simpler, more explainable rules). Also ran conservative lower-bound sweep for Any Email tree (trains on 5th-percentile CATE from Stage 3 causal forest, evaluates on point estimate). Rules saved in outputs/07_policy_rules.txt. Combined policy: if both Mens and Womens trees say send, pick the type with higher individual CATE."
+}

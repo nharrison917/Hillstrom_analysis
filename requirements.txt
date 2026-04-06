@@ -1,0 +1,8 @@
+pandas==3.0.2
+numpy==2.4.4
+scikit-learn==1.6.1
+xgboost==3.2.0
+econml==0.16.0
+plotly==6.6.0
+scipy==1.17.1
+joblib==1.5.3

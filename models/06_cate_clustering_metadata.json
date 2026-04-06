@@ -1,0 +1,25 @@
+{
+  "stage": 6,
+  "model": "KMeans on CATE/uplift scores",
+  "k": 4,
+  "response_features": [
+    "cate_any",
+    "cate_mens",
+    "cate_womens",
+    "uplift_conv_any",
+    "uplift_conv_mens",
+    "uplift_conv_womens",
+    "ev_conv_component",
+    "ev_spend_component"
+  ],
+  "scaling": "StandardScaler",
+  "random_state": 42,
+  "silhouette_score": 0.2796,
+  "personas": {
+    "0": "Marginal / Uncertain",
+    "1": "Moderate Responders",
+    "2": "Moderate Responders",
+    "3": "High Value \u2014 Conversion Driven"
+  },
+  "notes": "Clusters defined by response score vectors, not customer features. Profiles mapped back to original features to explain who each type is. Actual experimental lift per cluster validates the clustering. Use these cluster assignments as named segments in reporting."
+}

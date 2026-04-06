@@ -1,0 +1,26 @@
+{
+  "stage": 4,
+  "inputs": {
+    "conversion_scores": "outputs/scores_conversion.csv",
+    "revenue_scores": "outputs/scores_revenue.csv",
+    "stage2_models": "models/02_m[t|c]_[any|mens|womens].pkl"
+  },
+  "outputs": {
+    "send_list": "outputs/send_list.csv",
+    "charts": [
+      "outputs/04_ev_distribution.html",
+      "outputs/04_cumulative_ev.html",
+      "outputs/04_mens_vs_womens_ev.html",
+      "outputs/04_segment_profiles.html"
+    ]
+  },
+  "recommendations": {
+    "Mens E-Mail": 26643,
+    "Womens E-Mail": 23440,
+    "Do Not Email": 13917
+  },
+  "mean_ev_any": 19.7599,
+  "mean_ev_mens": 12.7077,
+  "mean_ev_womens": 9.9088,
+  "notes": "EV = P(convert|email)*E[spend|convert,email] - P(convert|ctrl)*E[spend|convert,ctrl]. Decomposed into conversion component (new buyers) and spend component (higher order value). Best email assigned per customer by comparing ev_mens vs ev_womens. Do Not Email = customers with ev_any <= 0 (negative or zero incremental value). Spend-given-conversion models trained on converters only \u2014 small sample, use with caution. Stage 3 cate_any is a more stable estimate of incremental revenue for ranking."
+}
