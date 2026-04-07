@@ -18,6 +18,14 @@ outputs/*.csv
 !outputs/policy_tree_recommendations.csv
 !outputs/cate_cluster_profiles.csv
 
+# Agent / internal planning and session docs -- kept locally, not for public repo
+CLAUDE.md
+PLAN.md
+RERUN.md
+PIPELINE_V1_V2_COMPARISON.md
+STREAMLIT_NOTES.md
+.ai-codex/
+
 # Local editor / tool config
 .claude/
 *.pyc
