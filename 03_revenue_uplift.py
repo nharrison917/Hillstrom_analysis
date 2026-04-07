@@ -25,41 +25,19 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import GradientBoostingRegressor, GradientBoostingClassifier
 from econml.dml import CausalForestDML
 import pickle
 
 warnings.filterwarnings('ignore')
 
-DATA_FILE = "Kevin_Hillstrom_MineThatData_E-MailAnalytics_DataMiningChallenge_2008.03.20.csv"
-RANDOM_STATE = 42
-
-FEATURES = [
-    'recency',
-    'log_history',
-    'mens',
-    'womens',
-    'both_catalogs',
-    'newbie',
-    'history_segment_enc',
-    'zip_code_enc',
-    'channel_enc',
-]
+from preprocessing import prepare_features, FEATURES, RANDOM_STATE, DATA_FILE
 
 # ---------------------------------------------------------------------------
 # 1. Load and prepare
 # ---------------------------------------------------------------------------
 print("Loading data...")
-df = pd.read_csv(DATA_FILE)
-
-df['log_history'] = np.log1p(df['history'])
-df['both_catalogs'] = ((df['mens'] == 1) & (df['womens'] == 1)).astype(int)
-
-le = LabelEncoder()
-for col in ['history_segment', 'zip_code', 'channel']:
-    df[col + '_enc'] = le.fit_transform(df[col].astype(str))
-
+df = prepare_features(pd.read_csv(DATA_FILE))
 print(f"  Loaded {len(df)} rows.")
 print(f"  Spend > 0: {(df['spend'] > 0).sum()} rows ({(df['spend'] > 0).mean():.2%})")
 print(f"  Mean spend (all): ${df['spend'].mean():.4f}")

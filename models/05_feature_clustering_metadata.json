@@ -1,7 +1,7 @@
 {
   "stage": 5,
   "model": "KMeans",
-  "k": 3,
+  "k": 7,
   "features": [
     "recency",
     "log_history",
@@ -10,30 +10,57 @@
     "both_catalogs",
     "newbie",
     "history_segment_enc",
-    "zip_code_enc",
-    "channel_enc"
+    "zip_Suburban",
+    "zip_Urban",
+    "channel_Multichannel",
+    "channel_Web",
+    "recency_x_newbie"
   ],
   "scaling": "StandardScaler",
   "random_state": 42,
-  "silhouette_score": 0.2766,
+  "silhouette_score": 0.2558,
   "personas": [
     {
       "cluster": 0,
-      "persona": "High Responders",
-      "n": 28734,
-      "mean_cate": 0.6651334448208829
+      "persona": "Organic Buyers (Suppress)",
+      "n": 13422,
+      "mean_cate": 0.6126261408701907
     },
     {
       "cluster": 1,
-      "persona": "Mens-Responsive",
-      "n": 6448,
-      "mean_cate": 0.6435391215806966
+      "persona": "High Responders",
+      "n": 13381,
+      "mean_cate": 0.6686523218991085
     },
     {
       "cluster": 2,
+      "persona": "Womens-Responsive",
+      "n": 10125,
+      "mean_cate": 0.6209604300944055
+    },
+    {
+      "cluster": 3,
+      "persona": "Mens-Responsive",
+      "n": 6448,
+      "mean_cate": 0.6175022412157619
+    },
+    {
+      "cluster": 4,
       "persona": "Low Responders",
-      "n": 28818,
-      "mean_cate": 0.6144849833563715
+      "n": 5768,
+      "mean_cate": 0.6010033655550738
+    },
+    {
+      "cluster": 5,
+      "persona": "Low Responders",
+      "n": 10117,
+      "mean_cate": 0.6042262676006562
+    },
+    {
+      "cluster": 6,
+      "persona": "High Responders",
+      "n": 4739,
+      "mean_cate": 0.7031429857913994
     }
   ],
   "notes": "Feature-space clustering \u2014 clusters defined by who customers are, not how they respond. Mapped onto lift space using actual experimental outcomes to ask whether natural customer groups happen to differ in email responsiveness. This is descriptive/communication, not targeting. Use CATE-space clustering (Stage 6) for response-defined segments."

@@ -65,19 +65,9 @@ import pickle
 
 warnings.filterwarnings('ignore')
 
-DATA_FILE = "Kevin_Hillstrom_MineThatData_E-MailAnalytics_DataMiningChallenge_2008.03.20.csv"
-RANDOM_STATE = 42
+from preprocessing import prepare_features, FEATURES, RANDOM_STATE, DATA_FILE
+
 N_FOLDS = 5
-
-FEATURES = [
-    'recency', 'log_history', 'mens', 'womens', 'both_catalogs', 'newbie',
-    'history_segment_enc', 'zip_code_enc', 'channel_enc',
-]
-
-FEATURE_NAMES = [
-    'recency', 'log_history', 'mens', 'womens', 'both_catalogs', 'newbie',
-    'history_segment', 'zip_code', 'channel',
-]
 
 # Sweep grid
 DEPTHS = [2, 3, 4]
@@ -89,27 +79,14 @@ MIN_IMP_DECREASE = [0.0, 0.01, 0.05]
 # 1. Load data and CATE scores
 # ---------------------------------------------------------------------------
 print("Loading data and Stage 3 CATE scores...")
-df = pd.read_csv(DATA_FILE)
+df = prepare_features(pd.read_csv(DATA_FILE))
 df_rev = pd.read_csv('outputs/scores_revenue.csv')
 clusters = pd.read_csv('outputs/cluster_assignments_cate.csv')
 
-df['log_history'] = np.log1p(df['history'])
-df['both_catalogs'] = ((df['mens'] == 1) & (df['womens'] == 1)).astype(int)
-
+# Reverse map for history_segment (only categorical that still needs display decoding)
 le_hist = LabelEncoder()
-le_zip = LabelEncoder()
-le_chan = LabelEncoder()
-df['history_segment_enc'] = le_hist.fit_transform(df['history_segment'].astype(str))
-df['zip_code_enc'] = le_zip.fit_transform(df['zip_code'].astype(str))
-df['channel_enc'] = le_chan.fit_transform(df['channel'].astype(str))
-
-# Reverse-lookup maps for readable rule text
-rev_hist = {int(v): k for k, v in
-            zip(le_hist.classes_, le_hist.transform(le_hist.classes_))}
-rev_zip = {int(v): k for k, v in
-           zip(le_zip.classes_, le_zip.transform(le_zip.classes_))}
-rev_chan = {int(v): k for k, v in
-            zip(le_chan.classes_, le_chan.transform(le_chan.classes_))}
+le_hist.fit(df['history_segment'].astype(str))
+rev_hist = {int(le_hist.transform([c])[0]): c for c in le_hist.classes_}
 
 # Attach CATE scores
 df['cate_any'] = df_rev['cate_any'].values
@@ -468,7 +445,7 @@ print()
 # ---------------------------------------------------------------------------
 # 7. Extract human-readable rules
 # ---------------------------------------------------------------------------
-def tree_to_rules(pt, feature_names, rev_maps, label):
+def tree_to_rules(pt, feature_names, rev_hist, label):
     """
     Walk the fitted policy tree and produce plain-English if/then rules.
     Each leaf shows the rule path, recommended action, and mean CATE.
@@ -476,31 +453,37 @@ def tree_to_rules(pt, feature_names, rev_maps, label):
     This is the output that can go directly into a business decision memo:
     "If history <= $30 AND recency > 6 months AND not a new customer, suppress."
     No scoring pipeline required.
+
+    With one-hot encoding, zip and channel splits are already readable
+    (zip_Suburban = 1, channel_Multichannel = 1). Only history_segment_enc
+    needs a reverse lookup to display the original tier label strings.
     """
     tree = pt.tree_
     lines = [f"\n=== Policy Tree: {label} ==="]
     lines.append(f"  Depth: {pt.get_depth()} | Leaves: {tree.n_leaves}")
     lines.append("")
 
-    rev_map_lookup = {
-        6: rev_maps['history_segment'],
-        7: rev_maps['zip_code'],
-        8: rev_maps['channel'],
+    # Binary features where threshold is always ~0.5 (0 vs 1)
+    _BINARY = {
+        'mens', 'womens', 'both_catalogs', 'newbie',
+        'zip_Suburban', 'zip_Urban',
+        'channel_Multichannel', 'channel_Web',
     }
 
     def fmt_threshold(feat_idx, threshold):
-        if feat_idx in rev_map_lookup:
-            below = [v for k, v in rev_map_lookup[feat_idx].items()
-                     if k <= threshold]
-            above = [v for k, v in rev_map_lookup[feat_idx].items()
-                     if k > threshold]
-            return str(below), str(above)
-        elif feature_names[feat_idx] == 'log_history':
+        fname = feature_names[feat_idx]
+        if fname == 'log_history':
             val = np.expm1(threshold)
             return f"history <= ${val:.0f}", f"history > ${val:.0f}"
+        elif fname == 'history_segment_enc':
+            below = [v for k, v in rev_hist.items() if k <= threshold]
+            above = [v for k, v in rev_hist.items() if k > threshold]
+            return f"history_segment in {below}", f"history_segment in {above}"
+        elif fname in _BINARY:
+            return f"{fname} = 0", f"{fname} = 1"
         else:
-            return (f"{feature_names[feat_idx]} <= {threshold:.2f}",
-                    f"{feature_names[feat_idx]} > {threshold:.2f}")
+            return (f"{fname} <= {threshold:.2f}",
+                    f"{fname} > {threshold:.2f}")
 
     def recurse(node_id, depth, path):
         indent = "  " * (depth + 1)
@@ -509,7 +492,6 @@ def tree_to_rules(pt, feature_names, rev_maps, label):
         value = tree.value[node_id]
 
         if feat < 0:  # leaf node
-            # value shape is (n_arms, 1); arm 1 = treatment
             mean_cate = (float(value[1][0]) if len(value) > 1
                          else float(value[0][0]))
             action = "SEND EMAIL" if mean_cate > 0 else "DO NOT EMAIL"
@@ -519,32 +501,19 @@ def tree_to_rules(pt, feature_names, rev_maps, label):
             lines.append("")
             return
 
-        fname = feature_names[feat]
         left_desc, right_desc = fmt_threshold(feat, thresh)
-
-        left_path = (path + [left_desc if isinstance(left_desc, str)
-                              else f"{fname} in {left_desc}"])
-        right_path = (path + [right_desc if isinstance(right_desc, str)
-                               else f"{fname} in {right_desc}"])
-
-        recurse(tree.children_left[node_id], depth + 1, left_path)
-        recurse(tree.children_right[node_id], depth + 1, right_path)
+        recurse(tree.children_left[node_id],  depth + 1, path + [left_desc])
+        recurse(tree.children_right[node_id], depth + 1, path + [right_desc])
 
     recurse(0, 0, [])
     return "\n".join(lines)
 
 
-rev_maps = {
-    'history_segment': rev_hist,
-    'zip_code': rev_zip,
-    'channel': rev_chan,
-}
-
-rules_any = tree_to_rules(pt_any, FEATURE_NAMES, rev_maps,
+rules_any = tree_to_rules(pt_any, FEATURES, rev_hist,
                            'Any Email vs No Email (tuned)')
-rules_mens = tree_to_rules(pt_mens, FEATURE_NAMES, rev_maps,
+rules_mens = tree_to_rules(pt_mens, FEATURES, rev_hist,
                             'Mens Email vs No Email (tuned)')
-rules_womens = tree_to_rules(pt_womens, FEATURE_NAMES, rev_maps,
+rules_womens = tree_to_rules(pt_womens, FEATURES, rev_hist,
                               'Womens Email vs No Email (tuned)')
 
 print(rules_any)

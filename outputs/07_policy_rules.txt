@@ -1,316 +1,82 @@
-POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=POLICY TREE RULES - TUNED (Stage 7b)
-Any Email: depth=4, min_leaf=500, min_imp=0.00
-Mens Email: depth=4, min_leaf=1000, min_imp=0.00
-Womens Email: depth=4, min_leaf=500, min_imp=0.00
-=
-
 === Policy Tree: Any Email vs No Email (tuned) ===
-  Depth: 4 | Leaves: 6
+  Depth: 4 | Leaves: 11
 
-      IF ['Multichannel'] AND history <= $257
-        -> SEND EMAIL  (mean CATE: $0.3003)
+          IF history <= $30 AND recency <= 6.50 AND zip_Urban = 0 AND recency_x_newbie <= 0.50
+            -> SEND EMAIL  (mean CATE: $0.6538)
 
-          IF ['Multichannel'] AND history > $257 AND mens <= 0.50 AND history <= $441
-            -> SEND EMAIL  (mean CATE: $0.8787)
+          IF history <= $30 AND recency <= 6.50 AND zip_Urban = 0 AND recency_x_newbie > 0.50
+            -> SEND EMAIL  (mean CATE: $0.3967)
 
-          IF ['Multichannel'] AND history > $257 AND mens <= 0.50 AND history > $441
-            -> SEND EMAIL  (mean CATE: $1.6764)
+        IF history <= $30 AND recency <= 6.50 AND zip_Urban = 1
+          -> SEND EMAIL  (mean CATE: $1.7511)
 
-          IF ['Multichannel'] AND history > $257 AND mens > 0.50 AND history <= $376
-            -> SEND EMAIL  (mean CATE: $0.3954)
+          IF history <= $30 AND recency > 6.50 AND recency_x_newbie <= 3.50 AND mens = 0
+            -> DO NOT EMAIL  (mean CATE: $-1.7267)
 
-          IF ['Multichannel'] AND history > $257 AND mens > 0.50 AND history > $376
-            -> SEND EMAIL  (mean CATE: $1.3940)
+          IF history <= $30 AND recency > 6.50 AND recency_x_newbie <= 3.50 AND mens = 1
+            -> DO NOT EMAIL  (mean CATE: $-0.9407)
 
-    IF ['Phone', 'Web']
-      -> SEND EMAIL  (mean CATE: $0.5777)
+          IF history <= $30 AND recency > 6.50 AND recency_x_newbie > 3.50 AND womens = 0
+            -> SEND EMAIL  (mean CATE: $1.1586)
+
+          IF history <= $30 AND recency > 6.50 AND recency_x_newbie > 3.50 AND womens = 1
+            -> SEND EMAIL  (mean CATE: $1.2607)
+
+        IF history > $30 AND history <= $43 AND history <= $34
+          -> SEND EMAIL  (mean CATE: $1.1426)
+
+          IF history > $30 AND history <= $43 AND history > $34 AND history <= $38
+            -> SEND EMAIL  (mean CATE: $1.3490)
+
+          IF history > $30 AND history <= $43 AND history > $34 AND history > $38
+            -> SEND EMAIL  (mean CATE: $1.2148)
+
+      IF history > $30 AND history > $43
+        -> SEND EMAIL  (mean CATE: $0.6239)
 
 
 === Policy Tree: Mens Email vs No Email (tuned) ===
-  Depth: 2 | Leaves: 4
+  Depth: 4 | Leaves: 8
 
-      IF history <= $30 AND newbie <= 0.50
-        -> DO NOT EMAIL  (mean CATE: $-0.1365)
+          IF history <= $30 AND recency_x_newbie <= 0.50 AND recency <= 5.50 AND zip_Urban = 0
+            -> SEND EMAIL  (mean CATE: $0.6652)
 
-      IF history <= $30 AND newbie > 0.50
-        -> SEND EMAIL  (mean CATE: $1.0523)
+          IF history <= $30 AND recency_x_newbie <= 0.50 AND recency <= 5.50 AND zip_Urban = 1
+            -> SEND EMAIL  (mean CATE: $2.0854)
 
-      IF history > $30 AND history <= $42
-        -> SEND EMAIL  (mean CATE: $1.3273)
+          IF history <= $30 AND recency_x_newbie <= 0.50 AND recency > 5.50 AND recency <= 7.50
+            -> DO NOT EMAIL  (mean CATE: $-0.6938)
 
-      IF history > $30 AND history > $42
-        -> SEND EMAIL  (mean CATE: $0.7062)
+          IF history <= $30 AND recency_x_newbie <= 0.50 AND recency > 5.50 AND recency > 7.50
+            -> DO NOT EMAIL  (mean CATE: $-1.2070)
+
+          IF history <= $30 AND recency_x_newbie > 0.50 AND mens = 0 AND recency_x_newbie <= 6.50
+            -> DO NOT EMAIL  (mean CATE: $-0.0058)
+
+          IF history <= $30 AND recency_x_newbie > 0.50 AND mens = 0 AND recency_x_newbie > 6.50
+            -> SEND EMAIL  (mean CATE: $1.3146)
+
+        IF history <= $30 AND recency_x_newbie > 0.50 AND mens = 1
+          -> SEND EMAIL  (mean CATE: $1.5477)
+
+    IF history > $30
+      -> SEND EMAIL  (mean CATE: $0.7300)
 
 
 === Policy Tree: Womens Email vs No Email (tuned) ===
-  Depth: 4 | Leaves: 11
+  Depth: 3 | Leaves: 5
 
-        IF ['Multichannel'] AND womens <= 0.50 AND ['1) $0 - $100', '2) $100 - $200', '3) $200 - $350', '4) $350 - $500']
-          -> SEND EMAIL  (mean CATE: $0.1470)
+        IF recency_x_newbie <= 0.50 AND history <= $213 AND recency <= 10.50
+          -> SEND EMAIL  (mean CATE: $0.4396)
 
-        IF ['Multichannel'] AND womens <= 0.50 AND ['5) $500 - $750', '6) $750 - $1,000', '7) $1,000 +']
-          -> SEND EMAIL  (mean CATE: $1.6094)
+        IF recency_x_newbie <= 0.50 AND history <= $213 AND recency > 10.50
+          -> SEND EMAIL  (mean CATE: $0.0165)
 
-      IF ['Multichannel'] AND womens > 0.50
-        -> SEND EMAIL  (mean CATE: $1.0690)
+        IF recency_x_newbie <= 0.50 AND history > $213 AND history <= $385
+          -> DO NOT EMAIL  (mean CATE: $-0.2647)
 
-          IF ['Phone', 'Web'] AND history <= $30 AND recency <= 6.50 AND mens <= 0.50
-            -> SEND EMAIL  (mean CATE: $0.8712)
+        IF recency_x_newbie <= 0.50 AND history > $213 AND history > $385
+          -> SEND EMAIL  (mean CATE: $0.3137)
 
-          IF ['Phone', 'Web'] AND history <= $30 AND recency <= 6.50 AND mens > 0.50
-            -> SEND EMAIL  (mean CATE: $1.9138)
-
-          IF ['Phone', 'Web'] AND history <= $30 AND recency > 6.50 AND newbie <= 0.50
-            -> DO NOT EMAIL  (mean CATE: $-1.1133)
-
-          IF ['Phone', 'Web'] AND history <= $30 AND recency > 6.50 AND newbie > 0.50
-            -> SEND EMAIL  (mean CATE: $0.9736)
-
-          IF ['Phone', 'Web'] AND history > $30 AND recency <= 1.50 AND newbie <= 0.50
-            -> SEND EMAIL  (mean CATE: $0.2749)
-
-          IF ['Phone', 'Web'] AND history > $30 AND recency <= 1.50 AND newbie > 0.50
-            -> SEND EMAIL  (mean CATE: $1.2710)
-
-          IF ['Phone', 'Web'] AND history > $30 AND recency > 1.50 AND recency <= 2.50
-            -> SEND EMAIL  (mean CATE: $0.4406)
-
-          IF ['Phone', 'Web'] AND history > $30 AND recency > 1.50 AND recency > 2.50
-            -> SEND EMAIL  (mean CATE: $0.3781)
-
+    IF recency_x_newbie > 0.50
+      -> SEND EMAIL  (mean CATE: $0.8266)

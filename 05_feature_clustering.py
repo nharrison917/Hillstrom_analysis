@@ -18,40 +18,22 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 from plotly.subplots import make_subplots
-from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 from sklearn.decomposition import PCA
 import pickle
 
-DATA_FILE = "Kevin_Hillstrom_MineThatData_E-MailAnalytics_DataMiningChallenge_2008.03.20.csv"
-RANDOM_STATE = 42
+from preprocessing import prepare_features, FEATURES, RANDOM_STATE, DATA_FILE
 
-CLUSTER_FEATURES = [
-    'recency',
-    'log_history',
-    'mens',
-    'womens',
-    'both_catalogs',
-    'newbie',
-    'history_segment_enc',
-    'zip_code_enc',
-    'channel_enc',
-]
+CLUSTER_FEATURES = FEATURES  # cluster on the same feature set used in models
 
 # ---------------------------------------------------------------------------
 # 1. Load and prepare
 # ---------------------------------------------------------------------------
 print("Loading data...")
-df = pd.read_csv(DATA_FILE)
+df = prepare_features(pd.read_csv(DATA_FILE))
 df_scores = pd.read_csv('outputs/send_list.csv')
-
-df['log_history']   = np.log1p(df['history'])
-df['both_catalogs'] = ((df['mens'] == 1) & (df['womens'] == 1)).astype(int)
-
-le = LabelEncoder()
-for col in ['history_segment', 'zip_code', 'channel']:
-    df[col + '_enc'] = le.fit_transform(df[col].astype(str))
 
 # Attach scores
 df['ev_any']          = df_scores['ev_any'].values

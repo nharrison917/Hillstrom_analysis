@@ -1,17 +1,22 @@
 # Virtual environment
 .venv/
 
-# Raw data -- download from:
-# https://blog.minethatdata.com/2008/03/minethatdata-e-mail-analytics-and-data.html
+# Raw data -- committed for Streamlit Cloud (public 2008 benchmark, no PII)
+# Any other CSVs (e.g. local exports) remain excluded
 *.csv
+!Kevin_Hillstrom_MineThatData_E-MailAnalytics_DataMiningChallenge_2008.03.20.csv
 
 # Generated model binaries (regenerate by running scripts in order)
 models/*.pkl
 
-# Generated outputs (regenerate by running scripts)
-# Remove the outputs/ line below if you want HTML visualisations committed for portfolio viewing
+# Generated outputs -- HTMLs and most CSVs excluded; app-required files committed
 outputs/*.html
+!outputs/01_feature_importance.html
+!outputs/03_feature_importance.html
 outputs/*.csv
+!outputs/scores_revenue.csv
+!outputs/policy_tree_recommendations.csv
+!outputs/cate_cluster_profiles.csv
 
 # Local editor / tool config
 .claude/

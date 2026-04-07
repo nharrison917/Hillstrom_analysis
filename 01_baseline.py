@@ -16,15 +16,13 @@ import plotly.graph_objects as go
 import plotly.express as px
 from plotly.subplots import make_subplots
 from sklearn.model_selection import train_test_split, StratifiedKFold, cross_val_score
-from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import (
     classification_report, roc_auc_score, confusion_matrix
 )
 from xgboost import XGBClassifier
 import pickle
 
-DATA_FILE = "Kevin_Hillstrom_MineThatData_E-MailAnalytics_DataMiningChallenge_2008.03.20.csv"
-RANDOM_STATE = 42
+from preprocessing import prepare_features, FEATURES, RANDOM_STATE, DATA_FILE
 
 # ---------------------------------------------------------------------------
 # 1. Load and inspect
@@ -48,40 +46,18 @@ print()
 # ---------------------------------------------------------------------------
 print("Engineering features...")
 
-df_model = df.copy()
+df = prepare_features(df)
+df_model = df
 
-# Log-transform history (right-skewed, $29.99 floor)
-df_model['log_history'] = np.log1p(df_model['history'])
-
-# Overlap segment flag
-df_model['both_catalogs'] = ((df_model['mens'] == 1) & (df_model['womens'] == 1)).astype(int)
-
-# Encode categoricals
-cat_cols = ['history_segment', 'zip_code', 'channel']
-le = LabelEncoder()
-for col in cat_cols:
-    df_model[col + '_enc'] = le.fit_transform(df_model[col].astype(str))
-
-# Encode treatment (for reference — not used as a feature in baseline)
+# Encode treatment (for reference -- not used as a feature in baseline)
 segment_map = {'No E-Mail': 0, 'Mens E-Mail': 1, 'Womens E-Mail': 2}
 df_model['treatment'] = df_model['segment'].map(segment_map)
 
 # ---------------------------------------------------------------------------
 # 3. Feature matrix
 # ---------------------------------------------------------------------------
-# Note: we exclude treatment assignment from features — this is a baseline
+# Note: we exclude treatment assignment from features -- this is a baseline
 # "who converts" model, not an uplift model. Treatment goes in at Stage 2.
-FEATURES = [
-    'recency',
-    'log_history',
-    'mens',
-    'womens',
-    'both_catalogs',
-    'newbie',
-    'history_segment_enc',
-    'zip_code_enc',
-    'channel_enc',
-]
 TARGET = 'conversion'
 
 X = df_model[FEATURES]

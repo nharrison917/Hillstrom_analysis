@@ -26,40 +26,17 @@ import plotly.graph_objects as go
 import plotly.express as px
 from plotly.subplots import make_subplots
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import roc_auc_score
 from xgboost import XGBClassifier
 import pickle
 
-DATA_FILE = "Kevin_Hillstrom_MineThatData_E-MailAnalytics_DataMiningChallenge_2008.03.20.csv"
-RANDOM_STATE = 42
-
-FEATURES = [
-    'recency',
-    'log_history',
-    'mens',
-    'womens',
-    'both_catalogs',
-    'newbie',
-    'history_segment_enc',
-    'zip_code_enc',
-    'channel_enc',
-]
+from preprocessing import prepare_features, FEATURES, RANDOM_STATE, DATA_FILE
 
 # ---------------------------------------------------------------------------
 # 1. Load and prepare
 # ---------------------------------------------------------------------------
 print("Loading data...")
-df = pd.read_csv(DATA_FILE)
-
-df['log_history'] = np.log1p(df['history'])
-df['both_catalogs'] = ((df['mens'] == 1) & (df['womens'] == 1)).astype(int)
-
-cat_cols = ['history_segment', 'zip_code', 'channel']
-le = LabelEncoder()
-for col in cat_cols:
-    df[col + '_enc'] = le.fit_transform(df[col].astype(str))
-
+df = prepare_features(pd.read_csv(DATA_FILE))
 print(f"  Loaded {len(df)} rows.")
 print()
 

@@ -24,60 +24,19 @@ from sklearn.preprocessing import LabelEncoder
 from econml.policy import PolicyTree
 import pickle
 
-DATA_FILE = "Kevin_Hillstrom_MineThatData_E-MailAnalytics_DataMiningChallenge_2008.03.20.csv"
-RANDOM_STATE = 42
-
-FEATURES = [
-    'recency',
-    'log_history',
-    'mens',
-    'womens',
-    'both_catalogs',
-    'newbie',
-    'history_segment_enc',
-    'zip_code_enc',
-    'channel_enc',
-]
-
-FEATURE_NAMES = [
-    'recency',
-    'log_history',
-    'mens',
-    'womens',
-    'both_catalogs',
-    'newbie',
-    'history_segment',
-    'zip_code',
-    'channel',
-]
+from preprocessing import prepare_features, FEATURES, RANDOM_STATE, DATA_FILE
 
 # ---------------------------------------------------------------------------
 # 1. Load data and CATE scores
 # ---------------------------------------------------------------------------
 print("Loading data...")
-df = pd.read_csv(DATA_FILE)
+df = prepare_features(pd.read_csv(DATA_FILE))
 df_rev = pd.read_csv('outputs/scores_revenue.csv')
 
-df['log_history']   = np.log1p(df['history'])
-df['both_catalogs'] = ((df['mens'] == 1) & (df['womens'] == 1)).astype(int)
-
+# Reverse map for history_segment (only categorical that still needs display decoding)
 le_hist = LabelEncoder()
-le_zip  = LabelEncoder()
-le_chan = LabelEncoder()
-df['history_segment_enc'] = le_hist.fit_transform(df['history_segment'].astype(str))
-df['zip_code_enc']        = le_zip.fit_transform(df['zip_code'].astype(str))
-df['channel_enc']         = le_chan.fit_transform(df['channel'].astype(str))
-
-# Save encoders for interpretability
-encoders = {
-    'history_segment': dict(zip(le_hist.classes_, le_hist.transform(le_hist.classes_))),
-    'zip_code':        dict(zip(le_zip.classes_,  le_zip.transform(le_zip.classes_))),
-    'channel':         dict(zip(le_chan.classes_,  le_chan.transform(le_chan.classes_))),
-}
-# Reverse maps for display
-rev_hist = {v: k for k, v in encoders['history_segment'].items()}
-rev_zip  = {v: k for k, v in encoders['zip_code'].items()}
-rev_chan = {v: k for k, v in encoders['channel'].items()}
+le_hist.fit(df['history_segment'].astype(str))
+rev_hist = {int(le_hist.transform([c])[0]): c for c in le_hist.classes_}
 
 df['cate_any']    = df_rev['cate_any'].values
 df['cate_mens']   = df_rev['cate_mens'].fillna(df_rev['cate_any']).values \
@@ -118,44 +77,48 @@ print()
 # ---------------------------------------------------------------------------
 # 3. Extract and display rules
 # ---------------------------------------------------------------------------
-def tree_to_rules(pt, feature_names, rev_maps, label):
+def tree_to_rules(pt, feature_names, rev_hist, label):
     """
     Walk the policy tree and produce human-readable rules.
     Each leaf: show the rule path, recommended action, and mean CATE in that leaf.
+
+    With one-hot encoding, zip and channel columns are directly readable
+    (zip_Suburban = 1, channel_Multichannel = 1, etc.). Only history_segment_enc
+    still needs a reverse lookup to display the original tier labels.
     """
     tree = pt.tree_
     lines = [f"\n=== Policy Tree: {label} ==="]
     lines.append(f"  Depth: {pt.get_depth()} | Leaves: {tree.n_leaves}")
     lines.append("")
 
-    rev_map_lookup = {
-        6: rev_maps['history_segment'],
-        7: rev_maps['zip_code'],
-        8: rev_maps['channel'],
+    # Binary features where threshold is always ~0.5 (0 vs 1)
+    _BINARY = {
+        'mens', 'womens', 'both_catalogs', 'newbie',
+        'zip_Suburban', 'zip_Urban',
+        'channel_Multichannel', 'channel_Web',
     }
 
     def fmt_threshold(feat_idx, threshold):
-        # For binary/encoded features show the decoded value
-        if feat_idx in rev_map_lookup:
-            # encoded categoricals — threshold is a split point between int codes
-            below = [v for k, v in rev_map_lookup[feat_idx].items() if k <= threshold]
-            above = [v for k, v in rev_map_lookup[feat_idx].items() if k > threshold]
-            return f"{below}", f"{above}"
-        elif feature_names[feat_idx] == 'log_history':
+        fname = feature_names[feat_idx]
+        if fname == 'log_history':
             val = np.expm1(threshold)
             return f"history <= ${val:.0f}", f"history > ${val:.0f}"
+        elif fname == 'history_segment_enc':
+            below = [v for k, v in rev_hist.items() if k <= threshold]
+            above = [v for k, v in rev_hist.items() if k > threshold]
+            return f"history_segment in {below}", f"history_segment in {above}"
+        elif fname in _BINARY:
+            return f"{fname} = 0", f"{fname} = 1"
         else:
-            return f"{feature_names[feat_idx]} <= {threshold:.2f}", \
-                   f"{feature_names[feat_idx]} > {threshold:.2f}"
+            return f"{fname} <= {threshold:.2f}", f"{fname} > {threshold:.2f}"
 
     def recurse(node_id, depth, path):
         indent = "  " * (depth + 1)
         feat  = tree.feature[node_id]
-        thresh= tree.threshold[node_id]
+        thresh = tree.threshold[node_id]
         value = tree.value[node_id]
 
-        if feat < 0:  # leaf — value shape (n_treatments+1, 1); col 1 = treatment CATE
-            # value shape is (2,1) with 2-col fit: [control, treatment]
+        if feat < 0:  # leaf node
             mean_cate = float(value[1][0]) if len(value) > 1 else float(value[0][0])
             action = "SEND EMAIL" if mean_cate > 0 else "DO NOT EMAIL"
             rule = " AND ".join(path) if path else "(all customers)"
@@ -164,19 +127,17 @@ def tree_to_rules(pt, feature_names, rev_maps, label):
             lines.append("")
             return
 
-        fname = feature_names[feat]
         left_desc, right_desc = fmt_threshold(feat, thresh)
-
-        recurse(tree.children_left[node_id],  depth+1, path + [left_desc  if isinstance(left_desc,  str) else f"{fname} in {left_desc}"])
-        recurse(tree.children_right[node_id], depth+1, path + [right_desc if isinstance(right_desc, str) else f"{fname} in {right_desc}"])
+        recurse(tree.children_left[node_id],  depth+1, path + [left_desc])
+        recurse(tree.children_right[node_id], depth+1, path + [right_desc])
 
     recurse(0, 0, [])
     return "\n".join(lines)
 
 
-rules_any    = tree_to_rules(pt_any,    FEATURE_NAMES, {'history_segment': rev_hist, 'zip_code': rev_zip, 'channel': rev_chan}, 'Any Email vs No Email')
-rules_mens   = tree_to_rules(pt_mens,   FEATURE_NAMES, {'history_segment': rev_hist, 'zip_code': rev_zip, 'channel': rev_chan}, 'Mens Email vs No Email')
-rules_womens = tree_to_rules(pt_womens, FEATURE_NAMES, {'history_segment': rev_hist, 'zip_code': rev_zip, 'channel': rev_chan}, 'Womens Email vs No Email')
+rules_any    = tree_to_rules(pt_any,    FEATURES, rev_hist, 'Any Email vs No Email')
+rules_mens   = tree_to_rules(pt_mens,   FEATURES, rev_hist, 'Mens Email vs No Email')
+rules_womens = tree_to_rules(pt_womens, FEATURES, rev_hist, 'Womens Email vs No Email')
 
 print(rules_any)
 print(rules_mens)

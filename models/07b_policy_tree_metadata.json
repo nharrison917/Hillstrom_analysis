@@ -25,48 +25,47 @@
       "depth": 4,
       "min_samples_leaf": 500,
       "min_impurity_decrease": 0.0,
-      "cv_policy_value": 0.6796,
-      "cv_pct_sent": 0.9587
+      "cv_policy_value": 0.6661,
+      "cv_pct_sent": 0.9741
     },
     "mens_email": {
       "depth": 4,
-      "min_samples_leaf": 1000,
+      "min_samples_leaf": 200,
       "min_impurity_decrease": 0.0,
-      "cv_policy_value": 0.7295,
-      "cv_pct_sent": 0.9645
+      "cv_policy_value": 0.7536,
+      "cv_pct_sent": 0.9361
     },
     "womens_email": {
-      "depth": 4,
-      "min_samples_leaf": 500,
+      "depth": 3,
+      "min_samples_leaf": 200,
       "min_impurity_decrease": 0.0,
-      "cv_policy_value": 0.6191,
-      "cv_pct_sent": 0.9118
+      "cv_policy_value": 0.6588,
+      "cv_pct_sent": 0.8476
     }
   },
   "suppression_gap": {
-    "cate_c0_cluster_size": 17233,
+    "cate_c0_cluster_size": 16889,
     "stage7_dne": 2127,
-    "stage7b_dne": 2127,
-    "c0_suppressed_by_tree": 1529,
-    "c0_still_sent": 15704,
-    "leakage_mens_suppress_sent_womens": 1906,
-    "leakage_both_negative_cate": 292
+    "stage7b_dne": 0,
+    "c0_suppressed_by_tree": 0,
+    "c0_still_sent": 16889,
+    "leakage_mens_suppress_sent_womens": 3396,
+    "leakage_both_negative_cate": 1743
   },
   "policy_value": {
-    "blanket_send": 0.6402,
-    "policy_tree": 0.6402,
-    "pct_sent": 100.0,
-    "agreement_with_stage4_ev": 0.3906
+    "blanket_send": 0.6305,
+    "policy_tree": 0.6964,
+    "pct_sent": 96.68,
+    "agreement_with_stage4_ev": 0.3898
   },
   "recommendations_rule_only": {
-    "Mens E-Mail": 35991,
-    "Womens E-Mail": 25882,
-    "Do Not Email": 2127
+    "Mens E-Mail": 37328,
+    "Womens E-Mail": 26672
   },
   "recommendations_c0_filtered": {
-    "Mens E-Mail": 27136,
-    "Womens E-Mail": 19033,
-    "Do Not Email": 17831
+    "Mens E-Mail": 27852,
+    "Womens E-Mail": 19259,
+    "Do Not Email": 16889
   },
   "notes": "Tuned via 5-fold stratified CV (stratified on treatment group). Best params selected by mean CV policy value with tie-breaking in favour of shallower depth (simpler, more explainable rules). Also ran conservative lower-bound sweep for Any Email tree (trains on 5th-percentile CATE from Stage 3 causal forest, evaluates on point estimate). Rules saved in outputs/07_policy_rules.txt. Combined policy: if both Mens and Womens trees say send, pick the type with higher individual CATE."
 }

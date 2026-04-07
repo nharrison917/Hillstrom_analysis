@@ -14,12 +14,12 @@
   ],
   "scaling": "StandardScaler",
   "random_state": 42,
-  "silhouette_score": 0.2796,
+  "silhouette_score": 0.2632,
   "personas": {
     "0": "Marginal / Uncertain",
-    "1": "Moderate Responders",
+    "1": "High Value \u2014 Conversion Driven",
     "2": "Moderate Responders",
-    "3": "High Value \u2014 Conversion Driven"
+    "3": "Moderate Responders"
   },
   "notes": "Clusters defined by response score vectors, not customer features. Profiles mapped back to original features to explain who each type is. Actual experimental lift per cluster validates the clustering. Use these cluster assignments as named segments in reporting."
 }

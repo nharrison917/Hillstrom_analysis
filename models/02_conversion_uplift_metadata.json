@@ -10,8 +10,11 @@
     "both_catalogs",
     "newbie",
     "history_segment_enc",
-    "zip_code_enc",
-    "channel_enc"
+    "zip_Suburban",
+    "zip_Urban",
+    "channel_Multichannel",
+    "channel_Web",
+    "recency_x_newbie"
   ],
   "comparisons": [
     "any_email_vs_control",
@@ -26,8 +29,8 @@
     "colsample_bytree": 0.8
   },
   "random_state": 42,
-  "qini_any": 0.00755,
-  "qini_mens": 0.009632,
-  "qini_womens": 0.007222,
+  "qini_any": 0.007475,
+  "qini_mens": 0.009386,
+  "qini_womens": 0.007051,
   "notes": "T-Learner trains separate models on treated and control subsets. Uplift = P(convert|treated) - P(convert|control) applied to all customers. Qini coefficient is the standard uplift evaluation metric (higher=better, 0=random). Low Qini expected given 0.9% base conversion rate \u2014 sparse signal. Stage 3 causal forest on spend should produce more stable estimates."
 }
