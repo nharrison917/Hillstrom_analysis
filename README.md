@@ -182,8 +182,11 @@ python -m venv .venv
 source .venv/Scripts/activate   # Git Bash
 # or: .venv\Scripts\activate    # PowerShell
 
-# Install dependencies
+# Install dashboard dependencies (pandas, numpy, plotly, streamlit)
 python -m pip install -r requirements.txt
+
+# To re-run the modeling pipeline (stages 01-07b), also install the training packages:
+python -m pip install scikit-learn>=1.4 xgboost>=2.0 econml>=0.15
 
 # Run any pipeline stage
 python 01_baseline.py
