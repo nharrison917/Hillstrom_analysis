@@ -1,11 +1,13 @@
 # Runtime dependencies for the Streamlit dashboard (08_app.py).
 # All model outputs are pre-computed; no training packages are needed to run the app.
+# Pinned to exact versions smoke-tested on Python 3.11 and 3.14 (2026-10-02).
 #
 # To reproduce the full pipeline (stages 01-07b), also install:
 #   scikit-learn>=1.4
 #   xgboost>=2.0
 #   econml>=0.15
-pandas>=2.0
-numpy>=1.24
-plotly>=5.18
-streamlit>=1.30
+pandas==3.0.6
+numpy==2.4.6
+plotly==7.1.0
+scipy==1.17.1
+streamlit==1.64.0

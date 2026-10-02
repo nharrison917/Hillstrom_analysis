@@ -646,7 +646,7 @@ else:
         st.iframe(html_content_01, height=500)
 
         st.markdown(
-            """
+            r"""
 **Feature engineering notes (v2 pipeline):**
 
 - `log_history` — raw history is right-skewed ($29.99 floor). Log-transform used throughout.
@@ -717,7 +717,7 @@ Both are used here: T-Learner for conversion probability, Causal Forest for spen
 
         st.subheader("Limitations")
         st.markdown(
-            """
+            r"""
 1. **Spend-given-conversion instability:** Only 578 converters total (0.9% rate),
    split across 3 treatment arms (~122-456 per arm). The spend-given-conversion
    sub-models in Stage 4 have high variance. CATE estimates for conversion
